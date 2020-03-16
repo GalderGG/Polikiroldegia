@@ -52,7 +52,7 @@
       <td><%=actividad.getPrecio() %></td>
     </tr>
     
-    <%} %>
+    <% } %>
   </tbody>
 </table>
     

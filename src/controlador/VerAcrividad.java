@@ -13,35 +13,42 @@ import modelo.bean.Actividad;
 import modelo.dao.ModeloActividad;
 
 /**
- * Servlet implementation class verActividades
+ * Servlet implementation class VerAcrividad
  */
-@WebServlet("/VerActividades")
-public class VerActividades extends HttpServlet {
+@WebServlet("/VerAcrividad")
+public class VerAcrividad extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public VerActividades() {
+	public VerAcrividad() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int idActividad = Integer.parseInt(request.getParameter("id"));
 
 		ModeloActividad ma = new ModeloActividad();
+		Actividad actividad = ma.get(idActividad);
 
-		ArrayList<Actividad> actividades = ma.selectAll();
-
-		request.setAttribute("actividades", actividades);
-		request.getRequestDispatcher("verActividades.jsp").forward(request, response);
-
+		request.setAttribute("actividad", actividad);
+		request.getRequestDispatcher("verActividad.jsp").forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

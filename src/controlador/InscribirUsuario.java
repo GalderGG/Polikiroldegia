@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.bean.Actividad;
-import modelo.dao.ModeloActividad;
+import modelo.bean.Usuario;
+import modelo.dao.ModeloInscripcion;
+import modelo.dao.ModeloUsuario;
 
 /**
- * Servlet implementation class EliminarActividad
+ * Servlet implementation class InscribirUsuario
  */
-@WebServlet("/EliminarActividad")
-public class EliminarActividad extends HttpServlet {
+@WebServlet("/InscribirUsuario")
+public class InscribirUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminarActividad() {
+    public InscribirUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +31,21 @@ public class EliminarActividad extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int idActividad = Integer.parseInt(request.getParameter("id"));
-		
-		ModeloActividad modeloActividad = new ModeloActividad();
-		modeloActividad.delete(idActividad);
-		
-		response.sendRedirect("VerActividades");
-		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		int idUsuario=Integer.parseInt(request.getParameter("idusuarios"));
+		int idActividad=Integer.parseInt(request.getParameter("idactividad"));
+		
+		ModeloInscripcion modeloInscripcion=new ModeloInscripcion();
+		
+		if(!modeloInscripcion.estaInscrito(idUsuario, idActividad)) {
+			modeloInscripcion.inscribir(idUsuario, idActividad);
+		}
+		response.sendRedirect("verActividad?id=" + idActividad);
 	}
-
 }

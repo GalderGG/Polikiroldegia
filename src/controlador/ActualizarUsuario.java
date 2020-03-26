@@ -8,19 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.bean.Actividad;
+import modelo.bean.Usuario;
 import modelo.dao.ModeloActividad;
+import modelo.dao.ModeloUsuario;
 
 /**
- * Servlet implementation class EliminarActividad
+ * Servlet implementation class ActualizarUsuario
  */
-@WebServlet("/EliminarActividad")
-public class EliminarActividad extends HttpServlet {
+@WebServlet("/ActualizarUsuario")
+public class ActualizarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminarActividad() {
+    public ActualizarUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +32,13 @@ public class EliminarActividad extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int idActividad = Integer.parseInt(request.getParameter("id"));
+		int idUsuario = Integer.parseInt(request.getParameter("id"));
 		
-		ModeloActividad modeloActividad = new ModeloActividad();
-		modeloActividad.delete(idActividad);
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		Usuario usuario = modeloUsuario.get(idUsuario);
 		
-		response.sendRedirect("VerActividades");
-		
+		request.setAttribute("usuario", usuario);
+		request.getRequestDispatcher("ActualizarUsuario.jsp").forward(request, response);
 	}
 
 	/**

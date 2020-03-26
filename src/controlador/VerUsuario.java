@@ -31,11 +31,11 @@ public class VerUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idUsuario = Integer.parseInt(request.getParameter("id"));
 		
-		ModeloUsuario mu = new ModeloUsuario();
-		Usuario usuario = mu.get(idUsuario);
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		Usuario usuario = modeloUsuario.get(idUsuario);
 		
 		request.setAttribute("usuario", usuario);
-		request.getRequestDispatcher("verActividad.jsp").forward(request, response);
+		request.getRequestDispatcher("VerUsuario.jsp").forward(request, response);
 		
 	}
 
@@ -43,7 +43,6 @@ public class VerUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

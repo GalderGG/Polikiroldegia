@@ -27,20 +27,18 @@ public class VerActividades extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		ModeloActividad ma = new ModeloActividad();
+		ModeloActividad modeloActividad = new ModeloActividad();
 
-		ArrayList<Actividad> actividades = ma.selectAll();
+		ArrayList<Actividad> actividades = modeloActividad.selectAll();
 
 		request.setAttribute("actividades", actividades);
-		request.getRequestDispatcher("verActividades.jsp").forward(request, response);
+		request.getRequestDispatcher("VerActividades.jsp").forward(request, response);
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 
 		doGet(request, response);
 	}

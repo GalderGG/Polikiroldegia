@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.bean.Actividad;
+import modelo.bean.Usuario;
 import modelo.dao.ModeloActividad;
+import modelo.dao.ModeloUsuario;
 
 /**
- * Servlet implementation class EliminarActividad
+ * Servlet implementation class InsertarUsuario
  */
-@WebServlet("/EliminarActividad")
-public class EliminarActividad extends HttpServlet {
+@WebServlet("/InsertarUsuario")
+public class InsertarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminarActividad() {
+    public InsertarUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +34,29 @@ public class EliminarActividad extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int idActividad = Integer.parseInt(request.getParameter("id"));
-		
-		ModeloActividad modeloActividad = new ModeloActividad();
-		modeloActividad.delete(idActividad);
-		
-		response.sendRedirect("VerActividades");
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
+		String nombreApellido = request.getParameter("nombreApellido");
+		String dni = request.getParameter("dni");
+		String codigo = request.getParameter("codigo");
+		
+		Usuario usuario=new Usuario();
+		
+		usuario.setNombreApellido(nombreApellido);
+		usuario.setDni(dni);
+		usuario.setCodigo(codigo);
+		
+		ModeloUsuario modeloUsuario=new ModeloUsuario();
+		
+		modeloUsuario.insert(usuario);
+		
+		response.sendRedirect("VerUsuarios");
 	}
-
 }

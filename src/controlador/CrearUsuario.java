@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.bean.Actividad;
-import modelo.dao.ModeloActividad;
-
 /**
- * Servlet implementation class EliminarActividad
+ * Servlet implementation class CrearUsuario
  */
-@WebServlet("/EliminarActividad")
-public class EliminarActividad extends HttpServlet {
+@WebServlet("/CrearUsuario")
+public class CrearUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminarActividad() {
+    public CrearUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +27,7 @@ public class EliminarActividad extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int idActividad = Integer.parseInt(request.getParameter("id"));
-		
-		ModeloActividad modeloActividad = new ModeloActividad();
-		modeloActividad.delete(idActividad);
-		
-		response.sendRedirect("VerActividades");
+		request.getRequestDispatcher("CrearUsuario.jsp").forward(request, response);
 		
 	}
 
@@ -43,6 +35,7 @@ public class EliminarActividad extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

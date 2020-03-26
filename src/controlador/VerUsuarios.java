@@ -33,19 +33,17 @@ public class VerUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ModeloUsuario mu = new ModeloUsuario();
-		ArrayList<Usuario> usuarios = mu.selectAll();
+		
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
+		ArrayList<Usuario> usuarios = modeloUsuario.selectAll();
 		
 		request.setAttribute("usuarios", usuarios);
-		
-		request.getRequestDispatcher("verUsuarios.jsp").forward(request, response);}
-	
+		request.getRequestDispatcher("VerUsuarios.jsp").forward(request, response);}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

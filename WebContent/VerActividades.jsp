@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -7,19 +8,39 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 
 <title>Actividades</title>
 </head>
-<body style="background:rgb(53, 53, 53)">
+<body style="background: rgb(53, 53, 53)">
 	<div class="container">
 		<h1 class="text-center text-white">Actividades</h1>
+		<div class="row">
+			<div class="col-4 offset-8">
+				<form action="BuscarActividades" method="POST">
+				<div class="form-row align-items-center">
+						<div class="col-9">
+							<input type="text" class="form-control" name="query" placeholder="Buscar actividad">
+						</div>
+						<div class="col-3">
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<br>
 		<div class="row justify-content-center mt-2 text-center">
 			<div class="col">
-				<table class="table table-striped table-hover table-secondary table-borderless">
+				<table
+					class="table table-striped table-hover table-secondary table-borderless">
 					<thead>
 						<tr>
 							<th scope="col">NOMBRE</th>

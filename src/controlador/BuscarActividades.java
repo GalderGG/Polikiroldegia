@@ -1,8 +1,7 @@
 package controlador;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,21 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.bean.Actividad;
-import modelo.bean.Usuario;
 import modelo.dao.ModeloActividad;
-import modelo.dao.ModeloUsuario;
 
 /**
- * Servlet implementation class InsertarUsuario
+ * Servlet implementation class BuscarActividades
  */
-@WebServlet("/InsertarUsuario")
-public class InsertarUsuario extends HttpServlet {
+@WebServlet("/BuscarActividades")
+public class BuscarActividades extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertarUsuario() {
+    public BuscarActividades() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,8 +31,6 @@ public class InsertarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -43,20 +38,15 @@ public class InsertarUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nombreApellido = request.getParameter("nombreApellido");
-		String dni = request.getParameter("dni");
-		String codigo = request.getParameter("codigo");
+		String query = request.getParameter("query");
+		ModeloActividad modeloActividad = new ModeloActividad();
+		ArrayList<Actividad> actividades = modeloActividad.buscar(query);
 		
-		Usuario usuario = new Usuario();
+		request.setAttribute("actividades", actividades);
+		request.getRequestDispatcher("VerActividades.jsp").forward(request, response);
 		
-		usuario.setNombreApellido(nombreApellido);
-		usuario.setDni(dni);
-		usuario.setCodigo(codigo);
 		
-		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		
-		modeloUsuario.insert(usuario);
-		
-		response.sendRedirect("VerUsuarios");
 	}
+
 }

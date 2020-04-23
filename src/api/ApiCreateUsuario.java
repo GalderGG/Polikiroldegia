@@ -49,7 +49,7 @@ public class ApiCreateUsuario extends HttpServlet {
 		Usuario usuario = new Usuario();
 		usuario.setNombreApellido(jsonObject.getString("nombreApellido"));
 		usuario.setCodigo(jsonObject.getString("codigo"));
-		usuario.setCodigo(jsonObject.getString("dni"));
+		usuario.setDni(jsonObject.getString("dni"));
 		
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		modeloUsuario.insert(usuario);

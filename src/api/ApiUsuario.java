@@ -3,6 +3,7 @@ package api;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,6 +51,13 @@ public class ApiUsuario extends HttpServlet {
 
 		out.print(jsonString);
 		out.flush();
+		out.close();
+		
+		try {
+			modeloUsuario.getConexion().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

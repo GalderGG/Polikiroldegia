@@ -1,7 +1,9 @@
 package api;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -36,16 +38,25 @@ public class ApiUsuarios extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		ArrayList<Usuario> usuarios = modeloUsuario.selectAll();
-		
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setContentType("application/json");
-		
+				
 		String jsonString = JSONStringer.valueToString(usuarios);
 		
-		PrintWriter out = response.getWriter();
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
+		
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setContentType("application/json");	
+		response.setCharacterEncoding("UTF-8");	
 		
 		out.print(jsonString);
 		out.flush();
+		out.close();
+		
+		try {
+			modeloUsuario.getConexion().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package api;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,9 +57,12 @@ public class ApiCreateUsuarios extends HttpServlet {
 			usuario.setDni(jsonObject.getString("dni"));
 			
 			modeloUsuario.insert(usuario);
-			
 		}
 		
+		try {
+			modeloUsuario.getConexion().close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
-
 }
